@@ -12,6 +12,6 @@ public class VopilotBackendApplication {
         SpringApplication.run(VopilotBackendApplication.class, args);
 
         String urlSwagger = "http://localhost:8080/swagger-ui.html";
-        System.out.println("Swagger: " + urlSwagger);
+        System.out.println("\n• Swagger: " + urlSwagger);
     }
 }
