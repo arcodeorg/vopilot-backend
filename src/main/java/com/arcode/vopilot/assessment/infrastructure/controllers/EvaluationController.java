@@ -1,6 +1,5 @@
 package com.arcode.vopilot.assessment.infrastructure.controllers;
 
-import com.arcode.vopilot.assessment.application.usecases.EvaluationUseCase;
 import com.arcode.vopilot.assessment.domain.models.aggregates.Evaluation;
 import com.arcode.vopilot.assessment.domain.services.EvaluationService;
 import com.arcode.vopilot.assessment.infrastructure.resources.request.EvaluationRequest;
