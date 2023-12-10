@@ -10,12 +10,12 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
-public class ControllerExceptionHandler {
+public class ControllerHandlerException {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ErrorMessage resourceNotFoundException(ResourceNotFoundException exception, WebRequest request) {
-        return new ErrorMessage(
+    public ErrorMessageException resourceNotFoundException(ResourceNotFoundException exception, WebRequest request) {
+        return new ErrorMessageException(
                 HttpStatus.NOT_FOUND.value(),
                 exception.getMessage(),
                 request.getDescription(false),
@@ -26,8 +26,8 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorMessage validationException(ValidationException exception, WebRequest request) {
-        return new ErrorMessage(
+    public ErrorMessageException validationException(ValidationException exception, WebRequest request) {
+        return new ErrorMessageException(
                 HttpStatus.BAD_REQUEST.value(),
                 exception.getMessage(),
                 request.getDescription(false),
@@ -39,8 +39,8 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorMessage globalExceptionHandler(Exception exception, WebRequest request) {
-        return new ErrorMessage(
+    public ErrorMessageException globalExceptionHandler(Exception exception, WebRequest request) {
+        return new ErrorMessageException(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 exception.getMessage(),
                 request.getDescription(false),

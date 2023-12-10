@@ -6,6 +6,9 @@ import com.arcode.vopilot.assessment.infrastructure.repositories.EvaluationRepos
 import com.arcode.vopilot.assessment.infrastructure.resources.request.EvaluationRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EvaluationUseCase implements EvaluationService {
     private final EvaluationRepository evaluationRepository;
@@ -13,9 +16,19 @@ public class EvaluationUseCase implements EvaluationService {
         this.evaluationRepository = evaluationRepository;
     }
     @Override
-    public Long handle(EvaluationRequest evaluationRequest) {
+    public Long create(EvaluationRequest evaluationRequest) {
         var evaluationTest = new Evaluation(evaluationRequest.getTitle(), evaluationRequest.getDescription(), evaluationRequest.getNumberOfQuestions());
         evaluationRepository.save(evaluationTest);
         return evaluationTest.getId();
+    }
+
+    @Override
+    public List<Evaluation> getAll() {
+        return evaluationRepository.findAll();
+    }
+
+    @Override
+    public Optional<Evaluation> get(Long evaluationId) {
+        return evaluationRepository.findById(evaluationId);
     }
 }
